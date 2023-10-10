@@ -7,12 +7,13 @@ const pointButton = document.getElementById('btn-point')
 
 const screenOutput = document.querySelector('screen-output');
 
-let a = 2;
-let b = 3;
+let a = 10;
+let b = 8;
+let operator = '';
 let firstNumber = a;
 let secondNumber = b;
-let operator = '';
 
+// Basic math functions
 function add(a, b) {
     return a + b;
 }
@@ -26,14 +27,20 @@ function divide(a, b) {
     return a / b;
 }
 
-console.log(`a + b = ${add(a, b)}`);
-console.log(`a - b = ${subtract(a, b)}`);
-console.log(`a * b = ${multiply(a, b)}`);
-console.log(`a / b = ${divide(a, b)}`);
-
-function operate(operator, firstNumber, secondNumber) {
-    subtract();
-}
+function operate(operator, a, b) {
+    if (operator === '+') {
+        return add(a, b);
+    }
+    if (operator === '-') {
+        return subtract(a, b);
+    }
+    if (operator === '*') {
+        return multiply(a, b);
+    }
+    if (operator === '/') {
+        return divide(a, b);
+    }
+};
 
 // Event listeners
 // numberButtons.addEventListener('click', function() {
