@@ -90,11 +90,10 @@ body {
 }
 
 .wrapper {
-    height: ;
+    min-height: 100vh;
 }
 
 .calculator {
-    max-width: 300px;
     padding: var(--spacer-lg);
     background-color: var(--clr-neutral-800);
     border: none;
@@ -115,16 +114,15 @@ body {
     text-align: right;
 }
 .buttons {
-    flex-wrap: wrap;
     gap: var(--spacer-md);
     padding: var(--spacer-lg);
+    grid-template-columns: repeat(4, 50px);
+    grid-template-rows: repeat(5, 50px);
 }
 
 /* === BUTTONS === */
 .btn {
     cursor: pointer;
-    width: 50px;
-    height: 50px;
     padding: 1em;
     line-height: 1;
     text-align: center;
@@ -140,6 +138,12 @@ body {
 
 
 /* === UTILITY CLASSES === */
+.grid {
+    display: grid;
+}
+.span-two {
+    grid-column: span 2;
+}
 .flex {
     display: flex;
 }
@@ -148,6 +152,9 @@ body {
 }
 .align-items-center {
     align-items: center;
+}
+.align-content-center {
+    align-content: center;
 }
 .justify-content-center {
     justify-content: center;

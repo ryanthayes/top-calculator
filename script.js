@@ -5,13 +5,12 @@ const clearButton = document.getElementById('btn-clear')
 const deleteButton = document.getElementById('btn-delete')
 const pointButton = document.getElementById('btn-point')
 
-const screenOutput = document.querySelector('screen-output');
 
-let a = 10;
-let b = 8;
+const screenOutput = document.querySelector('.screen-output')
+
 let operator = '';
-let firstNumber = a;
-let secondNumber = b;
+let firstNumber = '';
+let secondNumber = '';
 
 // Basic math functions
 function add(a, b) {
@@ -43,6 +42,12 @@ function operate(operator, a, b) {
 };
 
 // Event listeners
-// numberButtons.addEventListener('click', function() {
+// Create the functions that populate the display when you click the number buttons. You should be storing the ‘display value’ in a variable
+numberButtons.forEach((button) => button.addEventListener('click', function () {
+    screenOutput.innerText = button.innerText;
+    
+}));
 
-// });
+// function helloWorld() {
+//     alert("Hello, World!");
+// }
