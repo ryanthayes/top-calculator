@@ -102,11 +102,7 @@ equalsButton.addEventListener('click', () => {
 allClearButton.addEventListener('click', clear);
 deleteButton.addEventListener('click', del);
 
-// Keyboard
-// document.addEventListener('keyup', (e) => {
-//     keyboardInput(e);
-//     }, false);
-
+// Keyboard input
 document.addEventListener('keydown', (e) => {
     if (e.key === '/') {
         e.preventDefault();
