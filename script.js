@@ -38,7 +38,6 @@ function calculate() {
     previousOperand = '';
     operator = '';
     updateDisplay();
-    console.log(currentOperand);
 };
 
 function appendNumber(number) {
@@ -74,7 +73,20 @@ function del() {
 function updateDisplay() {
     displayValue.textContent = currentOperand || operator;
 }
-
+function keyboardInput (e) {
+    if (e.key >= 0 && e.key<= 9 || e.key === '.') appendNumber(e.key);
+    if (e.key === '=' || e.key === 'Enter') calculate();
+    if (e.key === 'Backspace') del();
+    if (e.key === 'Escape') clear();
+    if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/')
+    chooseOperation(convertOperator(e.key));
+}
+function convertOperator(keyboardOperator) {
+    if (keyboardOperator === '/') return '÷'
+    if (keyboardOperator === '*') return 'x'
+    if (keyboardOperator === '-') return '-'
+    if (keyboardOperator === '+') return '+'
+}
 // Event listeners
 numberButtons.forEach(button => {
     button.addEventListener('click', (e) => {
@@ -92,3 +104,9 @@ equalsButton.addEventListener('click', () => {
 });
 allClearButton.addEventListener('click', clear);
 deleteButton.addEventListener('click', del);
+
+// Keyboard
+document.addEventListener('keyup', (e) => {
+    keyboardInput(e);
+    }, false);
+  
