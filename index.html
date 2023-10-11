@@ -24,35 +24,38 @@
                 <div class="screen flex align-items-center justify-content-right">
                     <p class="screen-output" data-screen-output>0</p>
                 </div>
-                <div class="buttons grid align-items-center">
-                    <buttons class="btn" data-clear>AC</buttons>
-                    <buttons class="btn" data-delete>DEL</buttons>
-                    <buttons class="btn" data-operator>%</buttons>
-                    <buttons class="btn" data-operator>÷</buttons>
+                <div class="buttons grid align-items-center justify-content-center">
+                    <buttons class="btn btn-function" data-clear>AC</buttons>
+                    <buttons class="btn btn-function" data-delete><--</buttons>
+                    <buttons class="btn btn-function" data-operator>%</buttons>
+                    <buttons class="btn btn-operator" data-operator>÷</buttons>
                     
                     <buttons class="btn" data-number>7</buttons>
                     <buttons class="btn" data-number>8</buttons>
                     <buttons class="btn" data-number>9</buttons>
-                    <buttons class="btn" data-operator>+</buttons>
+                    <buttons class="btn btn-operator" data-operator>x</buttons>
                     
                     <buttons class="btn" data-number>4</buttons>
                     <buttons class="btn" data-number>5</buttons>
                     <buttons class="btn" data-number>6</buttons>
-                    <buttons class="btn" data-operator>-</buttons>
+                    <buttons class="btn btn-operator" data-operator>-</buttons>
                     
                     <buttons class="btn" data-number>1</buttons>
                     <buttons class="btn" data-number>2</buttons>
                     <buttons class="btn" data-number>3</buttons>
-                    <buttons class="btn" data-operator>x</buttons>
+                    <buttons class="btn btn-operator" data-operator>+</buttons>
                     
                     <buttons class="btn" data-number>0</buttons>
                     <buttons class="btn" data-number>.</buttons>
-                    <buttons class="btn span-two" data-equals>=</buttons>
+                    <buttons class="btn btn-operator span-two" data-equals>=</buttons>
                 </div>
             </div>
         </section>
-        <footer id="footer">
-
+        <footer id="footer" class="flex align-items-center">
+            <p>© <span id="year"></span> Ryan Hayes</p><a href="https://github.com/ryanthayes/top-calculator"><img class="github" src="img/github-gray.svg" height="25px"></a>
+            <script>
+                document.getElementById("year").innerHTML = new Date().getFullYear();
+            </script>
         </footer>
     </section>
 </body>

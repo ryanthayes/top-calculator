@@ -8,42 +8,54 @@ const operatorButtons = document.querySelectorAll('[data-operator]')
 const equalsButton = document.querySelector('[data-equals]')
 const allClearButton = document.querySelector('[data-clear]')
 const deleteButton = document.querySelector('[data-delete]')
-
 const displayValue = document.querySelector('[data-screen-output]')
 
-// Basic math functions
-function add(a, b) {
-    return a + b;
-}
-function subtract(a, b) {
-    return a - b;
-}
-function multiply(a, b) {
-    return a * b;
-}
-function divide(a, b) {
-    return a / b;
-}
-
-function operate() {
-    let a = previousOperand;
-    let b = currentOperand;
-    console.log("a = ", a)
-    console.log("b = ", b)
-
+function calculate() {
+    let computation 
+    let a = parseFloat(previousOperand);
+    let b = parseFloat(currentOperand);
+    if (isNaN(a) || isNaN(b)) return
     if (operator === '+') {
-        return add(a, b);
+        computation = a + b;
     }
     if (operator === '-') {
-        return subtract(a, b);
+        computation = a - b;
     }
-    if (operator === '*') {
-        return multiply(a, b);
+    if (operator === 'x') {
+        computation = a * b;
     }
-    if (operator === '/') {
-        return divide(a, b);
+    if (operator === '÷') {
+        if (b === 0) {
+            displayValue.textContent = 'Error Will Robinson';
+            return
+        }
+        computation = a / b;
     }
+    if (operator === '%') {
+        computation = a % b;
+    }
+    currentOperand = computation;
+    previousOperand = '';
+    operator = '';
+    updateDisplay();
+    console.log(currentOperand);
 };
+
+function appendNumber(number) {
+    if(currentOperand.length<= 10) {
+        if (number === '.' && currentOperand.includes('.')) return // Prevents multiple decimals from being typed
+        currentOperand += number; // += displays each additional number 
+    }
+    updateDisplay();
+}
+
+function chooseOperation(operation) {
+    if (operator != null) calculate();
+    operator = operation;
+    previousOperand = currentOperand;
+    currentOperand = '';
+    updateDisplay();
+}
 
 function clear() {
     displayValue.textContent = 0;
@@ -51,23 +63,11 @@ function clear() {
     previousOperand = '';
     operator = undefined;
 }
+
 function del() {
-    currentOperand = currentOperand.toString().slice(0, -1);
-    updateDisplay();
-}
-function appendNumber(number) {
-    if (number === '.' && currentOperand.includes('.')) return
-    currentOperand += number; // += displays additional numbers as they are clicked
-    updateDisplay();
-}
-function chooseOperation(operation) {
-    if (currentOperand === '') return
-    if (previousOperand !== '') {
-        operate();
-    }
-    operator = operation;
-    previousOperand = currentOperand;
-    currentOperand = '';
+    currentOperand = currentOperand
+        .toString()
+        .slice(0, -1);
     updateDisplay();
 }
 
@@ -76,24 +76,19 @@ function updateDisplay() {
 }
 
 // Event listeners
-// Create the functions that populate the display when you click the number buttons. You should be storing the ‘display value’ in a variable
 numberButtons.forEach(button => {
     button.addEventListener('click', (e) => {
     appendNumber(e.target.textContent);
-})
+    })
 });
 
 operatorButtons.forEach(button => {
     button.addEventListener('click', (e) => {
         chooseOperation(e.target.textContent);
-})
+    })
 });
 equalsButton.addEventListener('click', () => {
-    operate();
+    calculate();
 });
 allClearButton.addEventListener('click', clear);
 deleteButton.addEventListener('click', del);
-
-// function helloWorld() {
-//     alert("Hello, World!");
-// }
