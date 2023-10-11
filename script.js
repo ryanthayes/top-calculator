@@ -31,9 +31,6 @@ function calculate() {
         }
         computation = a / b;
     }
-    if (operator === '%') {
-        computation = a % b;
-    }
     currentOperand = computation;
     previousOperand = '';
     operator = '';
@@ -106,7 +103,13 @@ allClearButton.addEventListener('click', clear);
 deleteButton.addEventListener('click', del);
 
 // Keyboard
-document.addEventListener('keyup', (e) => {
+// document.addEventListener('keyup', (e) => {
+//     keyboardInput(e);
+//     }, false);
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === '/') {
+        e.preventDefault();
+       }
     keyboardInput(e);
     }, false);
-  
